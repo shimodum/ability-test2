@@ -1,6 +1,7 @@
 /src/node_modules
 /src/public/hot
-!/src/storage
+/src/public/storage
+!/src/public/fruits-img
 /src/storage/*.key
 /src/vendor
 /src/.env
