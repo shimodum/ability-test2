@@ -1,18 +1,28 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// 商品一覧ページ（表示）
+Route::get('/products', [ProductController::class, 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// 商品詳細ページ
+Route::get('/products/{productId}', [ProductController::class, 'show']);
+
+// 商品登録ページ（フォーム表示）
+Route::get('/products/register', [ProductController::class, 'create']);
+
+// 商品登録（データ送信）
+Route::post('/products/register', [ProductController::class, 'store']);
+
+// 商品更新ページ（フォーム表示）
+Route::get('/products/{productId}/update', [ProductController::class, 'edit']);
+
+// 商品更新（データ送信）
+Route::put('/products/{productId}/update', [ProductController::class, 'update']);
+
+// 商品削除
+Route::delete('/products/{productId}/delete', [ProductController::class, 'destroy']);
+
+// 商品検索機能
+Route::get('/products/search', [ProductController::class, 'search']);

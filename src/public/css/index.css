@@ -1,0 +1,72 @@
+/* 全体のレイアウト */
+.product-container {
+    display: flex;
+    gap: 20px;
+}
+
+/* 左側エリア（検索・並び替え） */
+.sidebar {
+    width: 20%;
+}
+
+.search-box,
+.sort-box {
+    margin-bottom: 20px;
+}
+
+/* 右側エリア */
+.product-list-area {
+    width: 80%;
+}
+
+/* 商品追加ボタン */
+.add-btn-container {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.add-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #ffc107;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.add-btn:hover {
+    background-color: #e0a800;
+}
+
+/* 商品カード */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    width: calc(33.333% - 20px);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.product-card h3 {
+    margin: 10px 0 5px;
+    font-size: 16px;
+}
+
+.product-card p {
+    font-size: 14px;
+    color: #333;
+}

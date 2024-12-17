@@ -1,0 +1,13 @@
+/* ヘッダー部分 */
+.header {
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffc107;
+    margin: 0;
+}
