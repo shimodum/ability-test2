@@ -1,56 +1,103 @@
+/* コンテナ全体 */
 .product-detail-container {
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
+    gap: 20px;
 }
 
-.detail-left img.product-image {
+/* パンくずリスト */
+.breadcrumb {
+    align-self: flex-start;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* 商品詳細全体 */
+.product-content {
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    max-width: 900px;
+    align-items: flex-start;
+}
+
+/* 画像エリア */
+.product-image-area img {
     width: 300px;
+    height: auto;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.form-group {
-    margin-bottom: 15px;
+.product-image-area .file-input {
+    margin-top: 10px;
+    text-align: center;
 }
 
-.form-control {
+/* フォームエリア */
+.product-form {
     width: 100%;
-    padding: 8px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-.season-options label {
-    margin-right: 10px;
+.form-group textarea {
+    height: 100px;
+    resize: none;
 }
 
-.form-buttons {
+/* ボタンエリア */
+.button-area {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
     margin-top: 20px;
 }
 
-.btn {
-    padding: 8px 12px;
+.button-area .btn {
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    text-decoration: none;
     cursor: pointer;
+    font-size: 16px;
 }
 
-.btn-warning {
-    background-color: #ffc107;
-    color: #fff;
-}
-
-.btn-warning:hover {
-    background-color: #e0a800;
-}
-
-.btn-secondary {
+.btn-back {
     background-color: #6c757d;
     color: #fff;
 }
 
-.btn-secondary:hover {
-    background-color: #5a6268;
+.btn-save {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn:hover {
+    opacity: 0.9;
 }

@@ -45,10 +45,21 @@ class ProductController extends Controller
 
     // 商品更新処理
     public function update(Request $request, $productId) {
+        // 商品データの取得
         $product = Product::find($productId);
-        $product->update($request->all());
+
+        // フォームから送られた値を更新
+        $product->update([
+            'name' => $request->input('name'),
+            'price' => $request->input('price'),
+            'season' => $request->input('season'), // 現時点では単一選択
+            'description' => $request->input('description'),
+        ]);
+
+        // 商品一覧ページにリダイレクト
         return redirect('/products');
     }
+
 
     // 商品削除処理
     public function destroy($productId) {
