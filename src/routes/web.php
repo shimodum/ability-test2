@@ -19,7 +19,7 @@ Route::post('/products/register', [ProductController::class, 'store']);
 Route::get('/products/{productId}/update', [ProductController::class, 'edit']);
 
 // 商品更新（データ送信）
-Route::put('/products/{productId}/update', [ProductController::class, 'update']);
+Route::patch('/products/{productId}/update', [ProductController::class, 'update']);
 
 // 商品削除
 Route::delete('/products/{productId}/delete', [ProductController::class, 'destroy']);

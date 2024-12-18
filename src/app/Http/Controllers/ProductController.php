@@ -17,6 +17,12 @@ class ProductController extends Controller
     // 商品詳細ページ
     public function show($productId) {
         $product = Product::find($productId);
+
+        // データが存在しない場合の処理
+        if (!$product) {
+            abort(404, '商品が見つかりません');
+        }
+
         return view('show', compact('product'));
     }
 

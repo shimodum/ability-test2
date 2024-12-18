@@ -31,9 +31,11 @@
         <div class="product-list">
             @foreach ($products as $product)
                 <div class="product-card">
+                  <a href="{{ url('/products/' . $product->id) }}">
                     <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
                     <h3>{{ $product->name }}</h3>
                     <p>¥{{ number_format($product->price) }}</p>
+                  </a>
                 </div>
             @endforeach
         </div>
