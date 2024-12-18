@@ -5,7 +5,9 @@
 @section('content')
 <div class="product-detail-container">
     <!-- パンくずリスト -->
-    <a href="{{ url('/products') }}" class="breadcrumb">商品一覧 > {{ $product->name }}</a>
+    <div class="breadcrumb">
+        <a href="/products">商品一覧</a> > {{ $product->name }}
+    </div>
 
     <!-- 商品詳細エリア -->
     <div class="product-content">
@@ -18,7 +20,7 @@
         </div>
 
         <!-- 商品情報フォーム -->
-        <form method="POST" action="{{ url('/products/' . $product->id . '/update') }}" class="product-form">
+        <form method="POST" action="/products/{{ $product->id }}/update" class="product-form">
             @csrf
             @method('PATCH')
 
@@ -34,10 +36,12 @@
 
             <div class="form-group">
                 <label>季節</label>
-                <label><input type="radio" name="season" value="春" {{ $product->season == '春' ? 'checked' : '' }}> 春</label>
-                <label><input type="radio" name="season" value="夏" {{ $product->season == '夏' ? 'checked' : '' }}> 夏</label>
-                <label><input type="radio" name="season" value="秋" {{ $product->season == '秋' ? 'checked' : '' }}> 秋</label>
-                <label><input type="radio" name="season" value="冬" {{ $product->season == '冬' ? 'checked' : '' }}> 冬</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="season" value="春" {{ $product->season == '春' ? 'checked' : '' }}> 春</label>
+                    <label><input type="radio" name="season" value="夏" {{ $product->season == '夏' ? 'checked' : '' }}> 夏</label>
+                    <label><input type="radio" name="season" value="秋" {{ $product->season == '秋' ? 'checked' : '' }}> 秋</label>
+                    <label><input type="radio" name="season" value="冬" {{ $product->season == '冬' ? 'checked' : '' }}> 冬</label>
+                </div>
             </div>
 
             <div class="form-group">
@@ -47,9 +51,9 @@
 
             <!-- ボタンエリア -->
             <div class="button-area">
-                <a href="{{ url('/products') }}" class="btn btn-back">戻る</a>
+                <a href="/products" class="btn btn-back">戻る</a>
                 <button type="submit" class="btn btn-save">変更を保存</button>
-                <form method="POST" action="{{ url('/products/' . $product->id . '/delete') }}">
+                <form method="POST" action="/products/{{ $product->id }}/delete">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-delete">削除</button>
