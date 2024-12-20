@@ -4,25 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Season;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     // 商品一覧ページ
     public function index() {
-        $products = Product::paginate(6); // 商品を取得
-        return view('index', compact('products')); // index.blade.phpにデータを渡す
+        $products = Product::paginate(6);
+        return view('index', compact('products'));
     }
 
     // 商品詳細ページ
     public function show($productId) {
-        $product = Product::find($productId);
-
-        // データが存在しない場合の処理
-        if (!$product) {
-            abort(404, '商品が見つかりません');
-        }
-
+        $product = Product::findOrFail($productId); // findOrFailを使用して簡略化
         return view('show', compact('product'));
     }
 
@@ -32,45 +27,69 @@ class ProductController extends Controller
     }
 
     // 商品登録処理
-    public function store(Request $request) {
-        Product::create($request->all()); // バリデーションは後で追加
-        return redirect('/products');
+    public function store(ProductRequest $request) {
+        // ファイルアップロード処理
+        $imagePath = $request->file('image')->store('products', 'public');
+
+        // 商品データの保存
+        $product = Product::create(array_merge(
+            $request->validated(),
+            ['image' => $imagePath]
+        ));
+
+        // 季節の保存（応用機能）
+        if ($request->has('season')) {
+            $product->seasons()->attach($request->input('season'));
+        }
+
+        return redirect('/products')->with('success', '商品を登録しました。');
     }
 
     // 商品更新フォーム表示
     public function edit($productId) {
-        $product = Product::find($productId);
+        $product = Product::findOrFail($productId); // findOrFailを使用して簡略化
         return view('edit', compact('product'));
     }
 
     // 商品更新処理
-    public function update(Request $request, $productId) {
-        // 商品データの取得
-        $product = Product::find($productId);
+    public function update(ProductRequest $request, $productId) {
+        $product = Product::findOrFail($productId);
 
-        // フォームから送られた値を更新
-        $product->update([
-            'name' => $request->input('name'),
-            'price' => $request->input('price'),
-            'season' => $request->input('season'), // 現時点では単一選択
-            'description' => $request->input('description'),
-        ]);
+        // 新しい画像をアップロードする場合の処理
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('products', 'public');
+            $product->update(['image' => $imagePath]);
+        }
 
-        // 商品一覧ページにリダイレクト
-        return redirect('/products');
+        // 商品データの更新
+        $product->update($request->validated());
+
+        // 季節の更新（syncを使用して既存データを上書き）
+        if ($request->has('season')) {
+            $product->seasons()->sync($request->input('season'));
+        }
+
+        return redirect('/products')->with('success', '商品を更新しました。');
     }
-
 
     // 商品削除処理
     public function destroy($productId) {
-        Product::find($productId)->delete();
-        return redirect('/products');
+        $product = Product::findOrFail($productId);
+
+        // 関連する画像ファイルを削除（必要に応じて）
+        if ($product->image) {
+            \Storage::disk('public')->delete($product->image);
+        }
+
+        $product->delete();
+
+        return redirect('/products')->with('success', '商品を削除しました。');
     }
 
     // 商品検索機能
     public function search(Request $request) {
         $keyword = $request->input('keyword');
-        $products = Product::where('name', 'LIKE', "%{$keyword}%")->get();
+        $products = Product::where('name', 'LIKE', "%{$keyword}%")->paginate(6); // ページネーション追加
         return view('index', compact('products'));
     }
 }
