@@ -1,57 +1,98 @@
-.form-container {
-    max-width: 600px;
+/* 商品登録画面全体のレイアウト */
+.product-register-container {
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
+    border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-/* ボタンの共通スタイル */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* プライマリボタン（登録） */
-.btn-primary {
-    background-color: #ffc107;
-    color: #fff;
-}
-
-.btn-primary:hover {
-    background-color: #e0a800;
-}
-
-/* セカンダリボタン（戻る） */
-.btn-secondary {
-    background-color: #ccc;
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
     color: #333;
 }
 
-.btn-secondary:hover {
-    background-color: #bbb;
+/* フォームグループ */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.input-text,
+.input-file,
+.input-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.input-textarea {
+    height: 100px;
+    resize: none;
+}
+
+/* 必須マークとエラーメッセージ */
+.required {
+    color: red;
+    font-size: 12px;
+    margin-left: 8px;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+    /* デフォルトで非表示 */
+}
+
+/* チェックボックスグループ */
+.checkbox-group {
+    display: flex;
+    gap: 10px;
+}
+
+.checkbox-group label {
+    font-size: 14px;
+    color: #555;
+}
+
+/* ボタンエリア */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-back {
+    background-color: #ccc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-submit {
+    background-color: #f7b500;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #e0a800;
 }

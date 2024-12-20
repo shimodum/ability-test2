@@ -2,50 +2,65 @@
 .product-container {
     display: flex;
     gap: 20px;
+    padding: 20px;
 }
 
 /* 左側エリア（検索・並び替え） */
 .sidebar {
-    width: 15%;
+    width: 20%;
     padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 .search-box {
-    width: 100%;
-    border-radius: 10px;
     margin-bottom: 20px;
 }
 
-.sort-box {
-    width: 40%;
-    margin-bottom: 20px;
+.search-input {
+    width: calc(100% - 80px);
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 .search-btn {
-    width: 70%;
     padding: 8px 12px;
     background-color: #bfd736;
-    border-radius: 5px;
     border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
+.sort-box {
+    margin-top: 20px;
+}
+
+.sort-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 /* 右側エリア */
 .product-list-area {
-    width: 80%;
+    width: 75%;
 }
 
 /* 商品追加ボタン */
 .add-btn-container {
     text-align: right;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .add-btn {
-    display: inline-block;
-    padding: 8px 12px;
+    padding: 10px 20px;
     background-color: #dca80b;
-    color: #000;
+    color: #fff;
+    border: none;
     border-radius: 5px;
     text-decoration: none;
     font-size: 14px;
@@ -66,23 +81,50 @@
     width: calc(33.333% - 20px);
     border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
+    padding: 10px;
+    background-color: #fff;
 }
 
 .product-card img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     border-radius: 5px;
 }
 
 .product-card h3 {
-    margin: 10px 0 5px;
+    margin: 10px 0;
     font-size: 16px;
 }
 
 .product-card p {
     font-size: 14px;
     color: #333;
+}
+
+/* ページネーション */
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination .page-link {
+    color: #333;
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+}
+
+.pagination .page-link:hover {
+    background-color: #f0f0f0;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #bfd736;
+    color: #fff;
+    border-color: #bfd736;
 }

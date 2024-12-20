@@ -1,63 +1,64 @@
 @extends('layouts.app')
 
-@section('title', '商品詳細')
+@section('title', '商品詳細・変更')
 
 @section('content')
 <div class="product-detail-container">
-    <!-- パンくずリスト -->
-    <div class="breadcrumb">
-        <a href="/products">商品一覧</a> > {{ $product->name }}
-    </div>
-
     <!-- 商品詳細エリア -->
-    <div class="product-content">
-        <!-- 画像エリア -->
-        <div class="product-image-area">
-            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
-            <form method="POST" enctype="multipart/form-data">
-                <input type="file" name="image" class="file-input">
-            </form>
-        </div>
-
-        <!-- 商品情報フォーム -->
-        <form method="POST" action="/products/{{ $product->id }}/update" class="product-form">
+    <div class="product-detail">
+        <a href="/products" class="back-to-list">&lt; 商品一覧</a>
+        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="product-image">
+        <form method="POST" action="/products/{{ $product->id }}/update" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
 
-            <div class="form-group">
-                <label for="name">商品名</label>
-                <input type="text" name="name" value="{{ $product->name }}">
-            </div>
+            <!-- 商品名 -->
+            <label for="name">商品名</label>
+            <input type="text" id="name" name="name" value="{{ old('name', $product->name) }}" placeholder="商品名を入力">
+            @error('name')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
 
-            <div class="form-group">
-                <label for="price">値段</label>
-                <input type="number" name="price" value="{{ $product->price }}">
-            </div>
+            <!-- 値段 -->
+            <label for="price">値段</label>
+            <input type="text" id="price" name="price" value="{{ old('price', $product->price) }}" placeholder="値段を入力">
+            @error('price')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
 
-            <div class="form-group">
-                <label>季節</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="season" value="春" {{ $product->season == '春' ? 'checked' : '' }}> 春</label>
-                    <label><input type="radio" name="season" value="夏" {{ $product->season == '夏' ? 'checked' : '' }}> 夏</label>
-                    <label><input type="radio" name="season" value="秋" {{ $product->season == '秋' ? 'checked' : '' }}> 秋</label>
-                    <label><input type="radio" name="season" value="冬" {{ $product->season == '冬' ? 'checked' : '' }}> 冬</label>
-                </div>
+            <!-- 季節 -->
+            <label>季節</label>
+            <div class="season-options">
+                @foreach(['春', '夏', '秋', '冬'] as $season)
+                    <label>
+                        <input type="checkbox" name="season[]" value="{{ $season }}" {{ in_array($season, old('season', $product->season ?? [])) ? 'checked' : '' }}>
+                        {{ $season }}
+                    </label>
+                @endforeach
             </div>
+            @error('season')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
 
-            <div class="form-group">
-                <label for="description">商品説明</label>
-                <textarea name="description">{{ $product->description }}</textarea>
-            </div>
+            <!-- 商品説明 -->
+            <label for="description">商品説明</label>
+            <textarea id="description" name="description" placeholder="商品の説明を入力">{{ old('description', $product->description) }}</textarea>
+            @error('description')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
+
+            <!-- 商品画像 -->
+            <label for="image">商品画像</label>
+            <input type="file" id="image" name="image">
+            @error('image')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
 
             <!-- ボタンエリア -->
-            <div class="button-area">
-                <a href="/products" class="btn btn-back">戻る</a>
-                <button type="submit" class="btn btn-save">変更を保存</button>
-                <form method="POST" action="/products/{{ $product->id }}/delete">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-delete">削除</button>
-                </form>
+            <div class="button-group">
+                <button type="button" class="back-button" onclick="location.href='/products'">戻る</button>
+                <button type="submit" class="save-button">変更を保存</button>
+                <button type="button" class="delete-button" onclick="location.href='/products/{{ $product->id }}/delete'">&#128465;</button>
             </div>
         </form>
     </div>

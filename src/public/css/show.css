@@ -1,149 +1,91 @@
-/* コンテナ全体 */
+/* 全体のレイアウト */
 .product-detail-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 20px;
     gap: 20px;
-    max-width: 900px;
-    margin: 0 auto;
-    /* 中央揃え */
+    padding: 20px;
+    font-family: Arial, sans-serif;
 }
 
-/* パンくずリスト */
-.breadcrumb {
-    align-self: flex-start;
+/* 戻るリンク */
+.back-to-list {
+    text-decoration: none;
+    color: #007bff;
     margin-bottom: 10px;
-    font-size: 14px;
-    color: #333;
-    /* 通常色 */
-    text-decoration: none;
 }
 
-.breadcrumb a {
-    color: #333;
-    text-decoration: none;
-}
-
-.breadcrumb a:hover {
-    text-decoration: underline;
-}
-
-/* 商品詳細全体 */
-.product-content {
-    display: flex;
-    gap: 40px;
+/* 商品画像 */
+.product-image {
     width: 100%;
-    align-items: flex-start;
-}
-
-/* 画像エリア */
-.product-image-area {
-    text-align: center;
-}
-
-.product-image-area img {
-    width: 400px;
-    /* 画像サイズを調整 */
+    max-width: 300px;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-    /* ファイル選択ボタンとの間隔 */
+    margin-bottom: 20px;
 }
 
-.product-image-area .file-input {
-    display: block;
-    margin: 0 auto;
-    font-size: 14px;
-}
-
-/* フォームエリア */
-.product-form {
-    width: 100%;
+/* フォームスタイル */
+form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-/* ラベルと入力エリアを整列 */
-.form-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
+label {
+    font-weight: bold;
 }
 
-.form-group label {
-    width: 100px;
-    /* ラベル幅固定 */
-    margin-right: 10px;
-    text-align: right;
-    font-weight: normal;
-    font-size: 16px;
-}
-
-.form-group input,
-.form-group textarea {
-    flex: 1;
-    /* 入力欄を広げる */
-    padding: 10px;
-    border: 1px solid #ccc;
+input[type="text"],
+textarea,
+input[type="file"] {
+    width: 100%;
+    max-width: 500px;
+    padding: 8px;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 16px;
 }
 
-.form-group textarea {
-    height: 120px;
-    resize: none;
+textarea {
+    resize: vertical;
+    height: 100px;
 }
 
-/* 季節ラジオボタン */
-.radio-group {
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: -10px;
+}
+
+.season-options {
     display: flex;
-    gap: 20px;
+    gap: 10px;
 }
 
-.radio-group label {
+/* ボタンスタイル */
+.button-group {
     display: flex;
-    align-items: center;
-    gap: 5px;
+    gap: 10px;
 }
 
-/* ボタンエリア */
-.button-area {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
-}
-
-.btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 150px;
-    /* ボタン幅統一 */
-    padding: 10px;
-    font-size: 16px;
+.back-button {
+    background-color: #ccc;
     border: none;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    text-align: center;
-    color: #fff;
 }
 
-.btn-back {
-    background-color: #ccc;
+.save-button {
+    background-color: #ffd700;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.btn-save {
-    background-color: #ffc107;
-}
-
-.btn-delete {
-    background-color: #dc3545;
-}
-
-.btn:hover {
-    opacity: 0.9;
+.delete-button {
+    background-color: #ff4d4d;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
 }
