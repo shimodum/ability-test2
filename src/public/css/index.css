@@ -61,6 +61,33 @@
     cursor: pointer;
 }
 
+/* 並び替えタグ */
+.tag-container {
+    margin-top: 15px;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #f7b500;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-right: 5px;
+    position: relative;
+}
+
+.tag a.tag-close {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.tag a.tag-close:hover {
+    color: #333;
+}
+
 /* 商品一覧エリア */
 .product-list-area {
     flex: 3;
