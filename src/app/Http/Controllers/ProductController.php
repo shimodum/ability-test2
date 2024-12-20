@@ -9,11 +9,30 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    // 商品一覧ページ
-    public function index() {
-        $products = Product::paginate(6);
+    // 商品一覧ページ + 検索 + 並び替え
+    public function index(Request $request) {
+        $query = Product::query();
+
+        // 検索機能
+        if ($request->filled('keyword')) {
+            $query->where('name', 'LIKE', "%" . $request->input('keyword') . "%");
+        }
+
+        // 並び替え機能
+        if ($request->filled('sort')) {
+            $sort = $request->input('sort');
+            if ($sort === 'high') {
+                $query->orderBy('price', 'desc');
+            } elseif ($sort === 'low') {
+                $query->orderBy('price', 'asc');
+            }
+        }
+
+        $products = $query->paginate(6);
+
         return view('index', compact('products'));
     }
+
 
     // 商品詳細ページ
     public function show($productId) {

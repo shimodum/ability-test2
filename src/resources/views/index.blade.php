@@ -7,19 +7,23 @@
     <!-- 左側エリア -->
     <aside class="sidebar">
         <h2>商品一覧</h2>
-        <form method="GET" action="/products/search" class="search-box">
-            <input type="text" name="keyword" class="search-input" placeholder="商品名で検索">
+        <form method="GET" action="/products" class="search-sort-form">
+            <!-- 商品検索 -->
+            <input type="text" name="keyword" value="{{ request('keyword') }}" class="search-input" placeholder="商品名で検索">
             <button type="submit" class="search-btn">検索</button>
+
+            <!-- 並び替え -->
+            <div class="sort-box">
+                <label for="sort-select">価格順で表示</label>
+                <select id="sort-select" name="sort" class="sort-select" onchange="this.form.submit()">
+                    <option value="" {{ request('sort') == '' ? 'selected' : '' }}>選択してください</option>
+                    <option value="high" {{ request('sort') == 'high' ? 'selected' : '' }}>高い順に表示</option>
+                    <option value="low" {{ request('sort') == 'low' ? 'selected' : '' }}>低い順に表示</option>
+                </select>
+            </div>
         </form>
-        <div class="sort-box">
-            <label for="sort-select">価格順で表示</label>
-            <select id="sort-select" class="sort-select" name="sort" onchange="this.form.submit()">
-                <option value="">選択してください</option>
-                <option value="high">高い順に表示</option>
-                <option value="low">低い順に表示</option>
-            </select>
-        </div>
     </aside>
+
 
     <!-- 右側エリア -->
     <div class="product-list-area">
