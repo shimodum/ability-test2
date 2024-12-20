@@ -34,6 +34,7 @@ class ProductController extends Controller
     }
 
 
+
     // 商品詳細ページ
     public function show($productId) {
         $product = Product::findOrFail($productId); // findOrFailを使用して簡略化
