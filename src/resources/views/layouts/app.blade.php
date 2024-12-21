@@ -12,11 +12,13 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/show.css') }}">
     <link rel="stylesheet" href="{{ asset('css/create.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
 </head>
+
 <body>
     <!-- 共通ヘッダー -->
     <header class="header">
-        <div class="logo">
+        <div class="header-container">
             <h1>mogitate</h1>
         </div>
     </header>
@@ -26,4 +28,5 @@
         @yield('content')
     </div>
 </body>
+
 </html>

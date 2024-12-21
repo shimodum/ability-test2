@@ -1,0 +1,21 @@
+/* 共通ヘッダー */
+.header {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 20px;
+    gap: 10px;
+    width: 1512px;
+    height: 53px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #F4F4F4;
+}
+
+.header-container h1 {
+    font-size: 20px;
+    color: #f7b500;
+    /* 適切な文字色 */
+    margin: 0;
+    font-weight: bold;
+}
