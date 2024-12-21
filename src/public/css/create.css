@@ -53,8 +53,7 @@ label {
     color: red;
     font-size: 12px;
     margin-top: 4px;
-    display: none;
-    /* デフォルトで非表示 */
+    display: block;
 }
 
 /* チェックボックスグループ */

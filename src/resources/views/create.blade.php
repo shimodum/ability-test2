@@ -7,7 +7,7 @@
     <h2>商品登録</h2>
     <form method="POST" action="{{ url('/products/register') }}" enctype="multipart/form-data">
         @csrf
-        
+
         <!-- 商品名 -->
         <div class="form-group">
             <label for="product-name">商品名 <span class="required">必須</span></label>
