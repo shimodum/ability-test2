@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Route;
 // 商品一覧ページ（表示）
 Route::get('/products', [ProductController::class, 'index']);
 
-// 商品詳細ページ
-Route::get('/products/{productId}', [ProductController::class, 'show']);
-
 // 商品登録ページ（フォーム表示）
 Route::get('/products/register', [ProductController::class, 'create']);
+
+// 商品詳細ページ
+Route::get('/products/{productId}', [ProductController::class, 'show']);
 
 // 商品登録（データ送信）
 Route::post('/products/register', [ProductController::class, 'store']);
