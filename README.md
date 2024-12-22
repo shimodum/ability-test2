@@ -85,12 +85,17 @@
      cp .env.example .env  
      php artisan key:generate
 
-5.データベースをマイグレートする  
+5.ストレージへのシンボリックリンクを作成する  
+  アップロード画像が適切に表示されるよう、ストレージと公開フォルダをリンクします。
+   
+    docker-compose exec php php artisan storage:link
+   
+6.データベースをマイグレートする  
    アプリケーションで使用するデータベースのテーブルを作成します。
    
     docker-compose exec php php artisan migrate
    
-6.データをシーディングする  
+7.データをシーディングする  
 　必要な初期データをデータベースに投入します。
 
     docker-compose exec php php artisan db:seed
