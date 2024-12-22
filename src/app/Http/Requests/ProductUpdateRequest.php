@@ -46,5 +46,5 @@ class ProductUpdateRequest extends FormRequest
             'description.required' => '商品説明を入力してください。',
             'description.max' => '商品説明は120文字以内で入力してください。',
         ];
-    }   
+    }
 }
