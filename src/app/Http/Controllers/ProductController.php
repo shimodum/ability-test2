@@ -48,7 +48,7 @@ class ProductController extends Controller
     // 商品登録処理
     public function store(ProductStoreRequest $request) {
         // ファイルアップロード処理
-        $imagePath = $request->file('image')->store('products', 'public');
+        $imagePath = 'storage/' . $request->file('image')->store('products', 'public');
 
         // 商品データの保存
         $product = Product::create(array_merge(
