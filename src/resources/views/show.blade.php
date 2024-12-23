@@ -29,11 +29,15 @@
             <!-- 季節 -->
             <label>季節</label>
             <div class="season-options">
-                @foreach(['春', '夏', '秋', '冬'] as $season)
-                    <label>
-                        <input type="checkbox" name="season[]" value="{{ $season }}" {{ in_array($season, old('season', $product->season ?? [])) ? 'checked' : '' }}>
-                        {{ $season }}
-                    </label>
+                @foreach(['春', '夏', '秋', '冬'] as $index => $season)
+                <label>
+                    <input type="checkbox" name="season[]" value="{{ $index + 1 }}"
+                        @foreach ($product->seasons as $product_season)
+                            {{ $season == $product_season->name ? 'checked' : '' }}
+                        @endforeach
+                    >
+                    {{ $season }}
+                </label>
                 @endforeach
             </div>
             @error('season')

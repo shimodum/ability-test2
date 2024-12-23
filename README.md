@@ -44,7 +44,7 @@
 ## URL
 - アプリケーション: `http://localhost` （Nginx経由）
 - phpMyAdmin: `http://localhost:8080`
-
+- 商品詳細ページ: `http://localhost/products`
 ---
 
 ## デフォルトのデータベース設定

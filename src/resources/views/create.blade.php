@@ -39,10 +39,10 @@
         <div class="form-group">
             <label>季節 <span class="required">必須</span> <span class="optional">複数選択可</span></label>
             <div class="checkbox-group">
-                <label><input type="checkbox" name="season[]" value="春" {{ is_array(old('season')) && in_array('春', old('season')) ? 'checked' : '' }}> 春</label>
-                <label><input type="checkbox" name="season[]" value="夏" {{ is_array(old('season')) && in_array('夏', old('season')) ? 'checked' : '' }}> 夏</label>
-                <label><input type="checkbox" name="season[]" value="秋" {{ is_array(old('season')) && in_array('秋', old('season')) ? 'checked' : '' }}> 秋</label>
-                <label><input type="checkbox" name="season[]" value="冬" {{ is_array(old('season')) && in_array('冬', old('season')) ? 'checked' : '' }}> 冬</label>
+                <label><input type="checkbox" name="season[]" value="1" {{ is_array(old('season')) && in_array('1', old('season')) ? 'checked' : '' }}> 春</label>
+                <label><input type="checkbox" name="season[]" value="2" {{ is_array(old('season')) && in_array('2', old('season')) ? 'checked' : '' }}> 夏</label>
+                <label><input type="checkbox" name="season[]" value="3" {{ is_array(old('season')) && in_array('3', old('season')) ? 'checked' : '' }}> 秋</label>
+                <label><input type="checkbox" name="season[]" value="4" {{ is_array(old('season')) && in_array('4', old('season')) ? 'checked' : '' }}> 冬</label>
             </div>
             @if ($errors->has('season'))
                 <p class="error-message">{{ $errors->first('season') }}</p>
