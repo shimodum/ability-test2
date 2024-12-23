@@ -7,3 +7,7 @@ docker/mysql/data/
 /public/storage
 /storage/*.key
 .env
+
+# Allow specific storage folder
+!/storage/app/public/
+!/storage/app/public/products/
