@@ -76,12 +76,15 @@ class ProductController extends Controller
 
         // 新しい画像をアップロードする場合
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('products', 'public');
-            $product->update(['image' => $imagePath]);
+            $imagePath = 'storage/' . $request->file('image')->store('products', 'public');
+            $product->update(array_merge(
+                $request->validated(),
+                ['image' => $imagePath]
+            ));
+        } else {
+            // 商品データの更新
+            $product->update($request->validated());
         }
-
-        // 商品データの更新
-        $product->update($request->validated());
 
         // 季節の更新
         if ($request->has('season')) {
