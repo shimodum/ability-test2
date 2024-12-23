@@ -22,7 +22,7 @@ Route::get('/products/{productId}/update', [ProductController::class, 'edit']);
 Route::patch('/products/{productId}/update', [ProductController::class, 'update']);
 
 // 商品削除
-Route::delete('/products/{productId}/delete', [ProductController::class, 'destroy']);
+Route::get('/products/{productId}/delete', [ProductController::class, 'destroy']);
 
 // 商品検索機能
 Route::get('/products/search', [ProductController::class, 'search']);
