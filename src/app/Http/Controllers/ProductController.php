@@ -31,12 +31,22 @@ class ProductController extends Controller
 
         $products = $query->paginate(6);
 
+        // 画像パスに 'storage/' を付加
+        $products->transform(function ($product) {
+            $product->image = asset($product->image); // フルパスを生成
+            return $product;
+        });
+
         return view('index', compact('products'));
     }
 
     // 商品詳細ページ
     public function show($productId) {
         $product = Product::findOrFail($productId);
+
+        // 画像パスに 'storage/' を付加
+        $product->image = asset($product->image); // フルパスを生成
+
         return view('show', compact('product'));
     }
 
@@ -48,12 +58,12 @@ class ProductController extends Controller
     // 商品登録処理
     public function store(ProductStoreRequest $request) {
         // ファイルアップロード処理
-        $imagePath = 'storage/' . $request->file('image')->store('products', 'public');
+        $imagePath = $request->file('image')->store('products', 'public');
 
         // 商品データの保存
         $product = Product::create(array_merge(
             $request->validated(),
-            ['image' => $imagePath]
+            ['image' => 'storage/' . $imagePath]
         ));
 
         // 季節の保存
@@ -76,10 +86,10 @@ class ProductController extends Controller
 
         // 新しい画像をアップロードする場合
         if ($request->hasFile('image')) {
-            $imagePath = 'storage/' . $request->file('image')->store('products', 'public');
+            $imagePath = $request->file('image')->store('products', 'public');
             $product->update(array_merge(
                 $request->validated(),
-                ['image' => $imagePath]
+                ['image' => 'storage/' . $imagePath]
             ));
         } else {
             // 商品データの更新
@@ -100,7 +110,7 @@ class ProductController extends Controller
 
         // 関連する画像ファイルを削除
         if ($product->image) {
-            \Storage::disk('public')->delete($product->image);
+            \Storage::disk('public')->delete(str_replace('storage/', '', $product->image));
         }
 
         $product->delete();
@@ -112,6 +122,13 @@ class ProductController extends Controller
     public function search(Request $request) {
         $keyword = $request->input('keyword');
         $products = Product::where('name', 'LIKE', "%{$keyword}%")->paginate(6);
+
+        // 画像パスに 'storage/' を付加
+        $products->transform(function ($product) {
+            $product->image = asset($product->image); // フルパスを生成
+            return $product;
+        });
+
         return view('index', compact('products'));
     }
 }
